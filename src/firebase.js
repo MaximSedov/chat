@@ -12,11 +12,9 @@ firebase.initializeApp({
     appId: "1:520135229261:web:6a8465b00d8c6cbef1c104"
 });
 
-
-const auth = firebase.auth()
-
 // авторизация
-export function useAuth() {
+const auth = firebase.auth()
+export function Auth() {
     const user = ref(null)
     const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user))
     onUnmounted(unsubscribe)
@@ -42,7 +40,7 @@ const messagesQuery = messagesCollection.orderBy('createdAt', 'desc').limit(100)
    });
 });  */
 
-export function useChat() {
+export function Chat() {
     const messages = ref([])
     const unsubscribe = messagesQuery.onSnapshot(snapshot => {
         messages.value = snapshot.docs
@@ -51,9 +49,9 @@ export function useChat() {
     })
 
     onUnmounted(unsubscribe)
-    const { user, isLogin } = useAuth()
+    const { user, isLogin } = Auth()
 
-    const sendMessage = text => {
+    const sendMsg = text => {
         if (!isLogin.value) return
         const { photoURL, uid, displayName } = user.value
         messagesCollection.add({
@@ -66,7 +64,7 @@ export function useChat() {
     }
 
 
-    return { messages, sendMessage }
+    return { messages, sendMsg }
 }
 
 
@@ -81,7 +79,7 @@ export function usePrivateChat(){
     })
 
     onUnmounted(unsubscribe)
-    const {user, isLogin} = useAuth()
+    const {user, isLogin} = Auth()
 
     const sendPrivateMessage = text => {
         if (!isLogin.value) return

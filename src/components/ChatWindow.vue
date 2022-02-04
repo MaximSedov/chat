@@ -36,7 +36,7 @@
 
 <script>
 import { ref, watch, nextTick } from 'vue'
-import { useAuth, useChat } from '@/firebase'
+import { Auth, Chat } from '@/firebase'
 import Message from './Message.vue'
 import PrivateDialogs from './PrivateDialogs.vue'
 import { ArrowRightBold } from '@element-plus/icons-vue'
@@ -44,8 +44,8 @@ export default {
   components: { Message, PrivateDialogs },
   setup() {
     const activeName = ref('first')
-    const { user, isLogin } = useAuth()
-    const { messages, sendMessage } = useChat()
+    const { user, isLogin } = Auth()
+    const { messages, sendMsg } = Chat()
     const anchor = ref(null)
     watch(
       messages,
@@ -58,7 +58,7 @@ export default {
     )
     const message = ref('')
     const send = () => {
-      sendMessage(message.value)
+      sendMsg(message.value)
       message.value = ''
     }
 

@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import { useAuth } from '@/firebase'
+import { Auth } from '@/firebase'
 export default {
   setup() {
-    const { user, isLogin, signIn, signOut } = useAuth()
+    const { user, isLogin, signIn, signOut } = Auth()
     return { user, isLogin, signIn, signOut }
   },
 }
