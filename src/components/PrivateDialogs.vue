@@ -84,8 +84,6 @@ export default {
       cursor: pointer;
       background-color: #32407b;
     }
-    .user-photo {
-    }
     .user-name {
       color: white;
       font-size: 1.4rem;

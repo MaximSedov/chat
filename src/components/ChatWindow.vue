@@ -24,7 +24,7 @@
       <div class="form">
         <form action @submit.prevent="send">
           <div class style="width:100%;height:100%; display:flex;justify-content: space-between;align-items: center;">
-            <el-input style="width:80%" v-model="message" placeholder="Напишите здесь..." />
+            <el-input style="width:80%" v-model="message" placeholder="Напишите здесь..." required/>
             <el-button native-type="submit" :icon="ArrowRightBold" v-if="message != ''"></el-button>
           </div>
         </form>
@@ -37,7 +37,6 @@
 <script>
 import { ref, watch, nextTick } from 'vue'
 import { useAuth, useChat } from '@/firebase'
-//import SendIcon from './SendIcon.vue'
 import Message from './Message.vue'
 import PrivateDialogs from './PrivateDialogs.vue'
 import { ArrowRightBold } from '@element-plus/icons-vue'
@@ -59,7 +58,7 @@ export default {
     )
     const message = ref('')
     const send = () => {
-      sendMessage(message)
+      sendMessage(message.value)
       message.value = ''
     }
    

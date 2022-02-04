@@ -20,7 +20,7 @@ export function useAuth(){
     const user = ref(null)
     const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user))
     onUnmounted(unsubscribe)
-    const isLogin = computed(()=>user.value !==null)
+    const isLogin = computed(()=>user.value !== null)
 
     const signIn = async () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider()
@@ -49,7 +49,7 @@ export function useChat(){
     const messages = ref([])
     const unsubscribe = messagesQuery.onSnapshot(snapshot => {
         messages.value = snapshot.docs
-        .map(doc => ({if: doc.id, ...doc.data()}))
+        .map(doc => ({id: doc.id, ...doc.data()}))
         .reverse()
     })
 
@@ -83,7 +83,7 @@ export function usePrivateChat(){
     const messages = ref([])
     const unsubscribe = messagesPrivateQuery.onSnapshot(snapshot => {
         messages.value = snapshot.docs
-        .map(doc => ({if: doc.id, ...doc.data()}))
+        .map(doc => ({id: doc.id, ...doc.data()}))
         .reverse()
     })
 
