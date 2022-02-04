@@ -1,36 +1,36 @@
 <template>
   <div style="height:100%">
     <div class="chat-block">
-
       <el-tabs v-model="activeName" class="demo-tabs" :stretch="true">
-        
-    <el-tab-pane label="Общий чат" name="first">
-      
-        <Message v-for="{id, text, userPhotoURL, userName, userId, createdAt} in messages" :key="id" :createdAt="createdAt" :name="userName" :photo-url="userPhotoURL" :sender="userId === user?.uid">{{text}}</Message>
-        <div class ref="anchor"></div>
-      
-    </el-tab-pane>
-    
-    <el-tab-pane label="Диалоги" name="second">
-      <PrivateDialogs/>
-    </el-tab-pane>
+        <el-tab-pane label="Общий чат" name="first">
+          <Message
+            v-for="{id, text, userPhotoURL, userName, userId, createdAt} in messages"
+            :key="id"
+            :createdAt="createdAt"
+            :name="userName"
+            :photo-url="userPhotoURL"
+            :sender="userId === user?.uid"
+          >{{text}}</Message>
+          <div class ref="anchor"></div>
+        </el-tab-pane>
 
-  </el-tabs>
-
-      
+        <el-tab-pane label="Диалоги" name="second">
+          <PrivateDialogs />
+        </el-tab-pane>
+      </el-tabs>
     </div>
 
     <div class v-if="isLogin" style="height:5%">
       <div class="form">
         <form action @submit.prevent="send">
           <div class style="width:100%;height:100%; display:flex;justify-content: space-between;align-items: center;">
-            <el-input style="width:80%" v-model="message" placeholder="Напишите здесь..." required/>
+            <el-input style="width:80%" v-model="message" placeholder="Напишите здесь..." required />
             <el-button native-type="submit" :icon="ArrowRightBold" v-if="message != ''"></el-button>
           </div>
         </form>
       </div>
     </div>
-    <div style="height:5%;background-color: #082032;" class="" v-else></div>
+    <div style="height:5%;background-color: #082032;" class v-else></div>
   </div>
 </template>
 
@@ -61,10 +61,17 @@ export default {
       sendMessage(message.value)
       message.value = ''
     }
-   
-    
 
-    return { user, isLogin, messages, anchor, message, send, ArrowRightBold, activeName }
+    return {
+      user,
+      isLogin,
+      messages,
+      anchor,
+      message,
+      send,
+      ArrowRightBold,
+      activeName,
+    }
   },
 }
 </script>
@@ -75,32 +82,31 @@ export default {
   padding: 0.5rem;
   box-sizing: border-box;
   height: 95%;
-  .el-tabs{
+  .el-tabs {
     height: 100%;
-    &__header{
+    &__header {
       height: 5%;
     }
-    &__content{
+    &__content {
       height: 95%;
       overflow: scroll;
       overflow-x: hidden;
-      &::-webkit-scrollbar { 
+      &::-webkit-scrollbar {
         width: 0;
-        }
-        
+      }
+    }
+    &__item {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+    }
+    &__item.is-active {
+      color: #5972d3;
+    }
+    &__active-bar {
+      background-color: #5972d3;
+    }
   }
-  &__item{
-    font-size: 1.2rem;
-    font-weight: bold;
-    color:white;
-  }
-  &__item.is-active{
-    color:#5972d3;
-  }
-  &__active-bar{
-    background-color: #5972d3;
-  }
-}
 }
 .form {
   position: relative;

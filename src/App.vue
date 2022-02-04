@@ -1,19 +1,17 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
-*{
-font-family: Avenir, Helvetica, Arial, sans-serif;
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 #app {
-  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-body{
+body {
   margin: 0;
 }
-
 </style>

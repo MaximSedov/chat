@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss">
 .navbar {
-    padding: 0.5rem;
+  padding: 0.5rem;
   background-color: #082032;
   text-align: right;
   height: 100%;

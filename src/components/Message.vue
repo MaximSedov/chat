@@ -9,7 +9,6 @@
           </div>
           <slot />
           <div class="timestamp">{{timeConverter}}</div>
-          
         </div>
         <img :src="photoUrl" style="width:35px;border-radius:50%;display:block" />
       </div>
@@ -35,34 +34,31 @@ export default {
     timeConverter() {
       if (this.createdAt != null) {
         var a = new Date(this.createdAt.seconds * 1000)
-      var months = [
-        'Янв',
-        'Фев',
-        'Мар',
-        'Апр',
-        'Май',
-        'Июн',
-        'Июл',
-        'Авг',
-        'Сен',
-        'Окт',
-        'Ноя',
-        'Дек',
-      ]
-      //var year = a.getFullYear()
-      var month = months[a.getMonth()]
-      var date = a.getDate()
-      var hour = a.getHours()
-      var min = a.getMinutes()
-      //var sec = a.getSeconds()
-      var time =
-        date + ' ' + month + ' ' + hour + ':' + min
-      return (this.converteredTime = time)
-      }
-      else {
+        var months = [
+          'Янв',
+          'Фев',
+          'Мар',
+          'Апр',
+          'Май',
+          'Июн',
+          'Июл',
+          'Авг',
+          'Сен',
+          'Окт',
+          'Ноя',
+          'Дек',
+        ]
+        //var year = a.getFullYear()
+        var month = months[a.getMonth()]
+        var date = a.getDate()
+        var hour = a.getHours()
+        var min = a.getMinutes()
+        //var sec = a.getSeconds()
+        var time = date + ' ' + month + ' ' + hour + ':' + min
+        return (this.converteredTime = time)
+      } else {
         return (this.converteredTime = null)
       }
-      
     },
   },
 }
@@ -88,7 +84,7 @@ export default {
           font-weight: bold;
           font-size: 1.1rem;
         }
-        .timestamp{
+        .timestamp {
           margin-top: 0.4rem;
           font-size: 0.8rem;
           text-align: right;
@@ -115,7 +111,7 @@ export default {
           font-size: 1.1rem;
           margin-bottom: 0.5rem;
         }
-        .timestamp{
+        .timestamp {
           margin-top: 0.4rem;
           font-size: 0.8rem;
           text-align: left;
